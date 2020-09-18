@@ -14,7 +14,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-winston": "^4.0.5",
-    "winston": "^3.3.3"
+    "tslog": "^2.8.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.8",

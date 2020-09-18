@@ -1,4 +1,4 @@
-FROM docker:dind
+FROM docker
 
 RUN set -eux; \
         apk add --no-cache --update nodejs npm

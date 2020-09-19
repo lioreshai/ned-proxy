@@ -7,7 +7,7 @@ import {Logger} from 'tslog';
 const logger: Logger = new Logger({ name: "httpApi" });
 const app = express();
 
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 function mountNedFunction(nedFunctionConfig:NedFunctionConfig){
@@ -17,5 +17,5 @@ function mountNedFunction(nedFunctionConfig:NedFunctionConfig){
 const nedFunctionConfig = loadNedFunctionsConfig();
 nedFunctionConfig.forEach(mountNedFunction);
 app.listen(80, () => {
-  logger.info(`ned-proxy listenssing on port 80`);
+  logger.info(`ned-proxy api started`);
 } );

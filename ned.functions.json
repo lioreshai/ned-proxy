@@ -2,16 +2,16 @@
     {
         "method": "get",
         "route": "/alarm",
-        "image": "ubuntu"
+        "image": "example"
     },
     {
         "method": "post",
         "route": "/alarm",
-        "image": "ubuntu"
+        "image": "example"
     },
     {
         "method": "delete",
         "route": "/alarm",
-        "image": "ubuntu"
+        "image": "example"
     } 
 ]

@@ -13,6 +13,7 @@ const unlinkFile = util.promisify(fs.unlink);
 const readFile = util.promisify(fs.readFile);
 
 const logger: Logger = new Logger({ name: "nedFunctionExecutor" });
+const dockerOrg = process.env.NED_DOCKER_ORG;
 
 interface NedFunctionExecutionPayload {
   executionId: string;
@@ -25,7 +26,8 @@ interface NedFunctionExecutionPayload {
 }
 
 export function nedFunctionExecutor(config:NedFunctionConfig) {
-  logger.info(`mounting executor for "${config.image}" - ${config.method}:"${config.route}"`)
+  logger.info(`mounting executor for "${config.image}" - ${config.method}:"${config.route}"`);
+  //TODO: sanitize/validate dockerImage param
   const dockerImage = config.image;
   return async function nedFunctionExecutionHandler(req: Request,res: Response) {
     const executionId = uuid();
@@ -44,7 +46,7 @@ export function nedFunctionExecutor(config:NedFunctionConfig) {
     const buffer = Buffer.from(JSON.stringify(executionPayload));
     const zipped = zlib.gzipSync(buffer);
     await Promise.all([writeFile(payloadFileName, zipped),writeFile(resultFileName,"")]);
-    const { stdout, stderr } = await exec(`cat ${payloadFileName} | docker run -v ${resultFileName}:/${resultFileName} -i --rm nedfunction/${dockerImage}`);
+    const { stdout, stderr } = await exec(`cat ${payloadFileName} | docker run -v ${resultFileName}:/${resultFileName} -i --rm ${dockerOrg}/ned-${dockerImage}`);
     logger.info(`executionId:${executionId} - STDOUT:`, stdout);
     logger.info(`executionId:${executionId} - STDERR:`, stderr);
     res.send(await readFile(resultFileName));

@@ -1,5 +1,5 @@
 services:
-  node-dind-executor:
+  ned-proxy:
     build: .
     ports:
     - "8085:80"

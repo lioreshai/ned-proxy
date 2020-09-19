@@ -1,8 +1,8 @@
 build:
-	npm install
+    npm install
 	tsc
-	docker-compose build
+	docker build -t nedfunction/sample .
 clean:
-	docker-compose down
+	rm -rf dist/*
 test:
 deploy:

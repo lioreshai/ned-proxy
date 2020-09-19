@@ -2,16 +2,16 @@
     {
         "method": "get",
         "route": "/alarm",
-        "image": "example"
+        "image": "sample"
     },
     {
         "method": "post",
         "route": "/alarm",
-        "image": "example"
+        "image": "sample"
     },
     {
         "method": "delete",
         "route": "/alarm",
-        "image": "example"
+        "image": "sample"
     } 
 ]

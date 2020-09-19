@@ -1,0 +1,17 @@
+[
+    {
+        "method": "GET",
+        "route": "/alarm",
+        "image": "ubuntu"
+    },
+    {
+        "method": "POST",
+        "route": "/alarm",
+        "image": "ubuntu"
+    },
+    {
+        "method": "delete",
+        "route": "/alarm",
+        "image": "ubuntu"
+    } 
+]

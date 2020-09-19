@@ -1,7 +1,8 @@
 {
-  "name": "dind-executor",
+  "name": "ned-proxy",
   "version": "1.0.0",
   "description": "",
+  "repository": "git@github.com:lioreshai/ned-proxy.git",
   "main": "dist/index.js",
   "directories": {
     "test": "test"
@@ -12,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-winston": "^4.0.5",
     "tslog": "^2.8.0"

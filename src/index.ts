@@ -1,15 +1,24 @@
 import express from 'express';
+import bodyParser from 'body-parser';
+import {loadNedFunctionsConfig, NedFunctionConfig} from './loadConfig';
+import {nedFunctionExecutor} from './nedFunctionExecutor';
 import {Logger} from 'tslog';
 
 const logger: Logger = new Logger({ name: "httpApi" });
 const app = express();
 
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 
-app.get( "/", ( req, res ) => {
-    logger.debug(`incoming request with headers:`, req.headers)
-    res.send( "Hello world!" );
-} );
+function mountNedFunction(nedFunctionConfig:NedFunctionConfig){
+  app[nedFunctionConfig.method](nedFunctionConfig.route, nedFunctionExecutor(nedFunctionConfig))
+}
 
-app.listen( 80, () => {
-    logger.info(`node-dind-executor listening on port 80`)
+(function init(){
+  const nedFunctionConfig = loadNedFunctionsConfig();
+  nedFunctionConfig.forEach(mountNedFunction);
+})();
+
+app.listen(80, () => {
+    logger.info(`ned-proxy listening on port 80`)
 } );

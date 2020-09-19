@@ -1,11 +1,11 @@
 [
     {
-        "method": "GET",
+        "method": "get",
         "route": "/alarm",
         "image": "ubuntu"
     },
     {
-        "method": "POST",
+        "method": "post",
         "route": "/alarm",
         "image": "ubuntu"
     },

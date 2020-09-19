@@ -17,13 +17,13 @@ class MalformedNedFunctionConfigError extends Error {
 }
 
 function isNedFunctionConfigMethod(method: NedFunctionConfigMethod) {
-    return ["get", "post", "put", "patch", "delete"].includes(method)
+    return ["get", "post", "put", "patch", "delete"].includes(method);
 }
 
 function isNedFunctionConfig(nedFunctionConfig: NedFunctionConfig) {
    return typeof nedFunctionConfig.route === "string"
     && isNedFunctionConfigMethod(nedFunctionConfig.method)
-    && nedFunctionConfig.image === "string"
+    && typeof nedFunctionConfig.image === "string"
 }
 
 export function loadNedFunctionsConfig():NedFunctionConfig[] {
@@ -32,7 +32,7 @@ export function loadNedFunctionsConfig():NedFunctionConfig[] {
     nedFunctionsConfig = JSON.parse(process.env.NED_FUNCTIONS_JSON_STRING);
   }catch (err) {
     logger.error("couldn't parse ned function config from env variable, reading from file")
-    nedFunctionsConfig = require("./ned.functions.json");
+    nedFunctionsConfig = require("../ned.functions.json");
   }
   nedFunctionsConfig.forEach((config:NedFunctionConfig) => {
     if(!isNedFunctionConfig(config)) {

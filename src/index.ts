@@ -14,11 +14,8 @@ function mountNedFunction(nedFunctionConfig:NedFunctionConfig){
   app[nedFunctionConfig.method](nedFunctionConfig.route, nedFunctionExecutor(nedFunctionConfig))
 }
 
-(function init(){
-  const nedFunctionConfig = loadNedFunctionsConfig();
-  nedFunctionConfig.forEach(mountNedFunction);
-})();
-
+const nedFunctionConfig = loadNedFunctionsConfig();
+nedFunctionConfig.forEach(mountNedFunction);
 app.listen(80, () => {
-    logger.info(`ned-proxy listening on port 80`)
+  logger.info(`ned-proxy listenssing on port 80`);
 } );
